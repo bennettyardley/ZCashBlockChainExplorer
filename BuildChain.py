@@ -10,12 +10,12 @@ def buildChain():
 	siteBuilder = 'https://api.zcha.in/v2/mainnet/blocks?sort=height&direction=descending&limit=20&offset='
 	offset = 0
 	data = []
-
+	#Requests data from the API
 	while offset < 1000:
 		req = urllib2.Request((siteBuilder + str(offset)), headers=hdr)
 		page = urllib2.urlopen(req)
 		data += json.load(page)
 		offset += 20
-
+	#Stores data in a text document
 	with open('data.txt', 'w') as outfile:
 			json.dump(data, outfile) 
